@@ -11,7 +11,7 @@ export const Chip = styled.div<{
   ${(props) => props.$primary && "gap: 0.5em"};
   ${(props) => !props.$primary && "width: 100%"};
   padding: ${(props) =>
-    props.$primary ? "0.5em 2.3em 0.5em 1em" : "1rem 3rem"};
+    props.$primary ? "10px 20px" : "1rem 3rem"};
   border-radius: 1.8rem;
   background-color: ${(props) => (props.$disabled ? "#C4C4C4" : "#11519c")};
   margin-top: ${(props) => !props.$primary && ".5rem"};

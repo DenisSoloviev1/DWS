@@ -141,26 +141,27 @@ export const Aside = styled.aside`
   width: 50%;
   height: 100vh;
 
-  @media (max-width: 550px) {
+  @media (max-width: 900px) {
+    height: auto;
     width: 100%;
   }
 `;
 
 export const Box = styled.div`
-  border-radius: 3.125rem 0 0 3.125rem;
+  border-radius: 50px 0 0 50px;
   background: var(--color-background-container);
-  padding: 2.5em;
+  padding: 40px;
   width: 60%;
   min-height: 100vh;
-  animation: slide-y 0.3s easy-in-out;
+  animation: slide-x 0.5s ease-in-out;
 
-  @media (max-width: 1000px) {
+  @media (max-width: 900px) {
     width: 100%;
-    padding: 1rem 1rem 3rem;
-    border-radius: 0;
+    padding: 20px 0 20px;
+    border-radius: 50px 50px 0 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    animation: slide-x 0.3s easy-in-out;
+    animation: slide-y 0.5s ease-in-out;
   }
 `;

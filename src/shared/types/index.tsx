@@ -20,7 +20,6 @@ export interface IRoute {
   isPublic: boolean;
   component: LazyExoticComponent<ComponentType<any>>;
   roles: Roles[];
-  withLayout: boolean;
 }
 
 // departments

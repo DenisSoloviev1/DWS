@@ -9,6 +9,7 @@ export const Flex = styled.div<{
   $gap?: number;
 }>`
   width: ${(props) => props.$width ?? "100%"};
+  height: ${(props) => props.$height ?? ""};
   display: flex;
   flex-direction: ${(props) => props.$direction ?? "column"};
   justify-content: ${(props) => props.$justify ?? "flex-start"};

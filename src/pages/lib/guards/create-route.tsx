@@ -10,7 +10,6 @@ export const CreateRoute: React.FC<IRoute> = ({ component, path, id, ...route })
       key={id}
       element={
         <PrivateRoute
-          withLayout={route.withLayout}
           roles={route.roles}
           element={component}
           isPublic={route.isPublic}

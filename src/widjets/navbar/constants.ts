@@ -22,7 +22,7 @@ export const menuItems: Menu[] = [
   },
   {
     id: 3,
-    path: Routes.MAIN,
+    path: Routes.NOTFOUND,
     label: 'Отдел по подбору персонала',
     allowedRoles: ['Соискатель']
   },

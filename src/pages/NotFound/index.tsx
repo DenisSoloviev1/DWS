@@ -13,7 +13,7 @@ const NotFound: React.FC = () => {
         <h2>Ошибка 404:<br/> <span>страница не найдена.</span></h2>
 
         <p>
-          Вернуться на <NavLink to={Routes.AUTH}>главную</NavLink>.
+          Вернуться на <NavLink to={Routes.WALCOMING}>главную</NavLink>.
         </p>
       </Flex>
     </Wrapper>

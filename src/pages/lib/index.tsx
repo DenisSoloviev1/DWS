@@ -9,15 +9,13 @@ export const routes: IRoute[] = [
     component: lazy(() => import("../Walcoming")),
     isPublic: true,
     roles: [RolesDict.EMPLOYEE, RolesDict.STUDENT],
-    withLayout: false,
   },
   {
     id: 1,
     path: Routes.NOTFOUND,
     component: lazy(() => import("../NotFound")),
-    isPublic: true,
-    roles: [RolesDict.EMPLOYEE, RolesDict.STUDENT],
-    withLayout: false,
+    isPublic: false,
+    roles: [RolesDict.APPLICANT, RolesDict.EMPLOYEE, RolesDict.STUDENT],
   },
   {
     id: 2,
@@ -25,7 +23,6 @@ export const routes: IRoute[] = [
     component: lazy(() => import("../Auth")),
     isPublic: true,
     roles: [RolesDict.EMPLOYEE, RolesDict.STUDENT],
-    withLayout: false,
   },
   {
     id: 3,
@@ -33,7 +30,6 @@ export const routes: IRoute[] = [
     component: lazy(() => import("../Main")),
     isPublic: false,
     roles: [RolesDict.APPLICANT, RolesDict.EMPLOYEE, RolesDict.STUDENT],
-    withLayout: true,
   },
   {
     id: 4,
@@ -41,6 +37,5 @@ export const routes: IRoute[] = [
     component: lazy(() => import("../Callback")),
     isPublic: true,
     roles: [RolesDict.EMPLOYEE, RolesDict.STUDENT],
-    withLayout: false,
   },
 ];

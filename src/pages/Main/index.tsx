@@ -13,11 +13,26 @@ const Main = ({ children }: { children: ReactNode }) => {
 
   return (
     <Flex $direction={isMobile ? "column" : "row"}>
-      <Aside>
-        <NavBar />
-      </Aside>
+      {isMain && (
+        <>
+          <Aside>
+            <NavBar />
+          </Aside>
 
-      {isMain ? <MainSvg /> : <Box></Box>}
+          <Flex $justify={"center"} $align={"end"} $height={"100vh"}>
+            <MainSvg />
+          </Flex>
+        </>
+      )}
+      {!isMain && (
+        <>
+          <Aside>
+            <NavBar />
+          </Aside>
+
+          <Box>{children}</Box>
+        </>
+      )}
     </Flex>
   );
 };

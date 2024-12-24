@@ -4,24 +4,20 @@ import "@/shared/variables.css";
 
 export const PlainText = styled.p`
   color: var(--color-font);
-  font-size: 1.125rem;
+  font-size: 18px;
   font-weight: 500;
-
-  @media (max-width: 550px) {
-    font-size: 1rem;
-  }
 `;
 
 export const NavBarContainer = styled.div`
   width: 40vw;
-  padding: 2em;
+  padding: 50px;
   display: flex;
   flex-direction: column;
   gap: 30px;
 
   @media (max-width: 900px) {
+    padding: 30px;
     width: 100vw;
-    padding: 2em;
   }
 `;
 

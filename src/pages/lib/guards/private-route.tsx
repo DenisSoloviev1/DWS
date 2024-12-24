@@ -9,7 +9,6 @@ interface IPrivateRoute {
   element: ComponentType;
   isPublic: boolean;
   roles: Roles[]; // Массив ключей, таких как 'EMPLOYEE', 'STUDENT', 'APPLICANT'
-  withLayout: boolean;
 }
 
 export const PrivateRoute: FC<IPrivateRoute> = ({

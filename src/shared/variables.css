@@ -12,10 +12,7 @@
 @keyframes slide-x {
   0% {
     opacity: 0;
-    transform: translateX(-50%);
-  }
-  20% {
-    opacity: 0;
+    transform: translateX(30%);
   }
   100% {
     opacity: 1;
@@ -26,10 +23,7 @@
 @keyframes slide-y {
   0% {
     opacity: 0;
-    transform: translateY(-25%);
-  }
-  20% {
-    opacity: 0;
+    transform: translateY(30%);
   }
   100% {
     opacity: 1;
@@ -37,49 +31,6 @@
   }
 }
 
-@keyframes bounce {
-  0% {
-    transform: rotate(0deg);
-  }
-  12% {
-    transform: rotate(-10deg);
-  }
-  25% {
-    transform: rotate(-20deg);
-  }
-  36% {
-    transform: rotate(-10deg);
-  }
-  49% {
-    transform: rotate(0deg);
-  }
-  61% {
-    transform: rotate(10deg);
-  }
-  74% {
-    transform: rotate(20deg);
-  }
-  87% {
-    transform: rotate(10deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
-}
-
-@keyframes pulse {
-  0% {
-    transform: scale(0);
-    opacity: 1;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 0;
-  }
-}
 
 @keyframes shimmer {
   0% {
