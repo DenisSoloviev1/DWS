@@ -1,0 +1,91 @@
+:root {
+  /* Light mode */
+  --color-background: #f1f4f9;
+  --color-background-container: #ffffff;
+  --color-font-disable: #606264;
+  --color-font: #38424f;
+  --color-action: #11519c;
+  --color-delete: #e94242;
+}
+
+/* Animation */
+@keyframes slide-x {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%);
+  }
+  20% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-y {
+  0% {
+    opacity: 0;
+    transform: translateY(-25%);
+  }
+  20% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: rotate(0deg);
+  }
+  12% {
+    transform: rotate(-10deg);
+  }
+  25% {
+    transform: rotate(-20deg);
+  }
+  36% {
+    transform: rotate(-10deg);
+  }
+  49% {
+    transform: rotate(0deg);
+  }
+  61% {
+    transform: rotate(10deg);
+  }
+  74% {
+    transform: rotate(20deg);
+  }
+  87% {
+    transform: rotate(10deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: 200px 0;
+  }
+}
