@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Loader } from "@/shared/ui";
 import { RolesDict, Roles } from "../../shared/types";
 import { useAuthStore } from "@/entities/auth/model/store";
 import { Routes } from "@/shared/constants";
 import { baseUrl } from "@/shared/config";
+import { CircularProgress } from "@mui/material";
 
 const Callback: React.FC = () => {
   const { role, setRole, setUser } = useAuthStore();
@@ -56,7 +56,7 @@ const Callback: React.FC = () => {
   }, [isRoleSaved, role, navigate]);
 
   if (loading) {
-    return <Loader message={"Авторизация"} />;
+    return <CircularProgress />;
   }
 
   return null;

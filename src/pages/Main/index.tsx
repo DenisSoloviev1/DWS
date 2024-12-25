@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import { Wrapper } from "../style";
 import { Flex, MainSvg } from "@/shared/ui";
 
 import { Aside, Box } from "../style";

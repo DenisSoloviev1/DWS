@@ -1,10 +1,10 @@
-import { CircularProgress } from '@mui/material';
-import { FC } from 'react';
+import { CircularProgress } from "@mui/material";
+import React from "react";
 
-import { Flex } from '../Flex';
-import { ArrowRight } from '../Icon';
+import { Flex } from "../Flex";
+import { ArrowRight } from "../Icon";
 
-import { IconBtn, SubmitBtn, Text } from './style';
+import { IconBtn, SubmitBtn, Text } from "./style";
 
 interface Props {
   label: string;
@@ -12,7 +12,7 @@ interface Props {
   disabled: boolean;
 }
 
-export const SubmitButton: FC<Props> = ({
+export const SubmitButton: React.FC<Props> = ({
   label,
   disabled,
   loading,
@@ -25,11 +25,11 @@ export const SubmitButton: FC<Props> = ({
       $disabled={disabled}
       disabled={disabled}
     >
-      <Flex $justify="space-between" $direction='row'>
+      <Flex $justify="space-between" $direction="row">
         <Text>{label}</Text>
         {!loading ? (
           <IconBtn>
-            <ArrowRight stroke={'#fff'} />
+            <ArrowRight size={15} />
           </IconBtn>
         ) : (
           <CircularProgress />

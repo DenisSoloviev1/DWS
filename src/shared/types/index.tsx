@@ -21,37 +21,3 @@ export interface IRoute {
   component: LazyExoticComponent<ComponentType<any>>;
   roles: Roles[];
 }
-
-// departments
-
-export interface IDepartment {
-  id: number;
-  name: string;
-  executor: number;
-}
-
-// request
-
-export interface IRequest {
-  contact_name: string;
-  email: string;
-  phone: string;
-  date: string;
-  department: number;
-  division: number;
-  type: number;
-}
-
-// calendar
-
-export interface ICalendar {
-  month: Date | string;
-  day: Date | string;
-  time: Date | string;
-}
-
-//user
-export interface IUser {
-  userName: string;
-  
-}

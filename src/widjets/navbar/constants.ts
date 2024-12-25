@@ -10,19 +10,19 @@ export interface Menu {
 export const menuItems: Menu[] = [
   {
     id: 1,
-    path: Routes.MAIN,
+    path: Routes.REQUEST,
     label: 'Отдел кадров',
     allowedRoles: ['Работник']
   },
   {
     id: 2,
-    path: Routes.MAIN,
+    path: Routes.REQUEST,
     label: 'Отдел по работе с обучающимися',
     allowedRoles: ['Студент'] 
   },
   {
     id: 3,
-    path: Routes.NOTFOUND,
+    path: Routes.REQUEST,
     label: 'Отдел по подбору персонала',
     allowedRoles: ['Соискатель']
   },

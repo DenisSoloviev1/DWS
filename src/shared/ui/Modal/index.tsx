@@ -2,22 +2,19 @@ import { Dialog } from '@mui/material';
 import { Flex } from '@/shared/ui';
 import { ModalText } from './style';
 
-interface ModalProps {
-  isOpen: boolean;
-}
-
-export const Modal = ({ isOpen }: ModalProps) => {
+export const Modal = ({ isOpen }: {isOpen: boolean}) => {
   return (
     <Dialog open={isOpen}>
       <Flex
-        style={{ padding: '2em', borderRadius: '0.75rem' }}
+        style={{ padding: '30px'}}
         $gap={20}
         $justify="space-between"
         $align="center"
         $direction="column"
       >
         <img src="/ic.png" alt="icon" />
-        <ModalText>Заявка успешно отправлена!</ModalText>
+        
+        <ModalText>Заявка отправлена</ModalText>
       </Flex>
     </Dialog>
   );
