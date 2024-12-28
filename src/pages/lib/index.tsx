@@ -14,7 +14,7 @@ export const routes: IRoute[] = [
     id: 1,
     path: Routes.NOTFOUND,
     component: lazy(() => import("../NotFound")),
-    isPublic: false,
+    isPublic: true,
     roles: [RolesDict.APPLICANT, RolesDict.EMPLOYEE, RolesDict.STUDENT],
   },
   {

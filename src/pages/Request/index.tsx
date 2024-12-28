@@ -8,8 +8,9 @@ const Request: React.FC = () => {
   return (
     <>
       <Form />
-      <Modal isOpen={isOpen} />
-      <button onClick={()=>setIsOpen(!isOpen)}>click</button>
+      <Modal isOpen={isOpen} message={"Заявка отправлена!"} />
+
+      <button onClick={() => setIsOpen(!isOpen)}>click</button>
     </>
   );
 };

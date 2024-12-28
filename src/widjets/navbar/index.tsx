@@ -1,6 +1,6 @@
 import { IconUser } from "@/shared/ui/Icon";
 import { memo } from "react";
-import { NavBarContainer, NavLink, PlainText, TextMessage } from "./style";
+import { NavBarContainer, NavLink, PlainText } from "./style";
 import { useAuthStore } from "@/entities/auth";
 import { isMobile } from "@/shared/lib";
 import { Badge, Flex, GoBackBtn } from "@/shared/ui";
@@ -49,7 +49,6 @@ export const NavBar = memo(() => {
               ))}
           </ul>
         </nav>
-        <TextMessage>Скоро здесь будут другие ведомства...</TextMessage>
       </Flex>
     </NavBarContainer>
   );

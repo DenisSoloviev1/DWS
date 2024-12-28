@@ -71,7 +71,10 @@ const Auth: React.FC = () => {
           />
         </Flex>
       </Flex>
-      <Image src="/logo2.png" alt="logo" />
+      
+      <Image>
+        <img src="/logo2.png" alt="logo" />
+      </Image>
     </Wrapper>
   );
 };

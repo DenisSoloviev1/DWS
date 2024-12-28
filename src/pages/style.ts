@@ -3,6 +3,7 @@ import "@/shared/variables.css";
 
 export const Wrapper = styled.div`
   margin: 0 auto;
+  padding: 0 20px;
   width: 100%;
   max-width: 1340px;
   min-height: 100vh;
@@ -36,29 +37,37 @@ export const Wrapper = styled.div`
   p {
     font-size: 1.5rem;
     letter-spacing: -0.01125rem;
-
-    @media (max-width: 550px) {
-      font-size: 1rem;
-    }
   }
 
-  svg {
-    height: 100%;
-  }
   @media screen and (max-width: 900px) {
     padding: 0 20px;
-    flex-direction: column;
-
-    svg {
-      max-width: 100%;
-      height: 50vh;
-    }
+    flex-direction: column-reverse;
   }
 `;
 
-export const Image = styled.img`
-  height: 90vh;
-  object-fit: contain;
+export const Image = styled.div`
+  img {
+    width: 50vw;
+    object-fit: contain;
+  }
+
+  svg {
+    max-width: 500px;
+  }
+
+  @media screen and (max-width: 900px) {
+    img {
+      margin-top: 50px;
+      width: auto;
+      height: 40vh;
+      object-fit: contain;
+    }
+
+    svg {
+      width: 100vw;
+      height: 50vh;
+    }
+  }
 `;
 
 export const Button = styled.button`
