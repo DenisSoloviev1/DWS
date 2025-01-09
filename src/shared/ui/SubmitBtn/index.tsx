@@ -25,7 +25,7 @@ export const SubmitButton: React.FC<Props> = ({
       $disabled={disabled}
       disabled={disabled}
     >
-      <Flex $justify="space-between" $direction="row">
+      <Flex $direction={"row"} $justify={"space-between"} $align={"center"}>
         <Text>{label}</Text>
         {!loading ? (
           <IconBtn>

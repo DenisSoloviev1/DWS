@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import "@/shared/variables.css";
+import "../shared/variables.css";
 
 export const Wrapper = styled.div`
   margin: 0 auto;
@@ -108,6 +108,7 @@ export const Button = styled.button`
 `;
 
 export const Helper = styled.div`
+  width: 200px;
   position: relative;
   color: var(--color-action);
   font-size: 1rem;
@@ -115,10 +116,10 @@ export const Helper = styled.div`
   .message {
     color: #38424f;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     position: absolute;
     display: none;
-    transition: all 0.3s easi-in-out;
+    transition: all 0.3s ease-in-out;
   }
 
   a {
@@ -172,5 +173,21 @@ export const Box = styled.div`
     flex-direction: column;
     align-items: center;
     animation: slide-y 0.5s ease-in-out;
+  }
+`;
+
+export const Assent = styled.p`
+  margin: 20px 0;
+
+  a {
+    font-weight: 500;
+    width: fit-content;
+    color: var(--color-action);
+
+    &:hover,
+    &:active {
+      cursor: pointer;
+      text-decoration: underline;
+    }
   }
 `;

@@ -16,11 +16,11 @@ export interface ITypeOfRequest {
 }
 
 export interface IRequest {
-  contact_name: IUser["userName"];
-  email: string;
-  phone: string;
-  date: string;
   department: IDepartment["id"];
   division: IDivision["id"];
   typeOfRequest: ITypeOfRequest["id"];
+  contactName: IUser["userName"];
+  email: string;
+  phone: string;
+  date: string;
 }

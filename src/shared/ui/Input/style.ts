@@ -1,6 +1,8 @@
-import { styled, TextField } from '@mui/material';
+import { styled, TextField } from "@mui/material";
 
 export const InputField = styled(TextField)`
+  width: 100%;
+
   & .MuiInputBase-root {
     background-color: #f1f4f9;
     position: relative;
