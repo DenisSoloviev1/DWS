@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
-import { BrowserRouter } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
+import { DateProvider, QueryProvider, RouterProvider } from "./providers";
 import styled from "styled-components";
 import { Routing } from "@/pages";
 import "./style.css";
@@ -14,11 +14,15 @@ const Progress = styled(CircularProgress)`
 
 const App: React.FC = () => {
   return (
-    <BrowserRouter>
-      <Suspense fallback={<Progress />}>
-        <Routing />
-      </Suspense>
-    </BrowserRouter>
+    // <DateProvider>
+      <QueryProvider>
+        <RouterProvider>
+          <Suspense fallback={<Progress />}>
+            <Routing />
+          </Suspense>
+        </RouterProvider>
+      </QueryProvider>
+    // </DateProvider>
   );
 };
 

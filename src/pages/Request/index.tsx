@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useMutation } from "react-query";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
@@ -9,7 +10,7 @@ import {
   FormField,
 } from "@/widjets/Form";
 import { Modal, Flex, SubmitButton } from "@/shared/ui";
-import { IRequest } from "@/entities/request";
+import { IRequest, addRequest, useRequestStore } from "@/entities/request";
 import { isMobile } from "@/shared/lib";
 import { Assent } from "../style";
 
@@ -22,20 +23,45 @@ const Request: React.FC = () => {
     formState: { errors },
     handleSubmit,
     reset,
-    watch,
   } = useForm<IRequest>({
     resolver: zodResolver(zodSchema),
     mode: "onSubmit",
   });
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [isPending, setIsPending] = useState<boolean>(false);
+  const [onSuccess, setOnSuccess] = useState<boolean>(false);
 
-  const contactName = watch("contactName");
-  const email = watch("email");
-  const phone = watch("phone");
+  const { params } = useRequestStore();
 
-  const onSubmit: SubmitHandler<IRequest> = (values) => {};
+  const { isLoading: isPending, mutate } = useMutation({
+    mutationKey: ["createRequest"],
+    mutationFn: async (data: IRequest) => {
+      return await addRequest(data);
+    },
+  });
+
+  const onSubmit: SubmitHandler<IRequest> = (values) => {
+    const mutationValues: IRequest = {
+      ...values,
+      department: params.department,
+      division: params.division,
+      typeOfRequest: params.typeOfRequest,
+      date: params.date,
+    };
+
+    mutate(mutationValues, {
+      onSuccess: () => {
+        setOnSuccess(true);
+        setIsOpen(true);
+        setTimeout(() => setIsOpen(false), 3000);
+        reset({ contactName: "", email: "", phone: "" });
+      },
+      onError: () => {
+        setOnSuccess(false);
+      },
+    });
+  };
+
   return (
     <>
       <Form submitFn={handleSubmit(onSubmit)}>
@@ -101,7 +127,7 @@ const Request: React.FC = () => {
         />
       </Form>
 
-      <Modal isOpen={isOpen} message={"Заявка отправлена!"} />
+      <Modal isOpen={isOpen} onSuccess={onSuccess} />
     </>
   );
 };

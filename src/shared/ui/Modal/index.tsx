@@ -11,10 +11,10 @@ export const ModalText = styled.p`
 
 interface ModalProps {
   isOpen: boolean;
-  message: string;
+  onSuccess: boolean;
 }
 
-export const Modal: React.FC<ModalProps> = ({ isOpen, message }) => {
+export const Modal: React.FC<ModalProps> = ({ isOpen, onSuccess }) => {
   return (
     <Dialog open={isOpen}>
       <Flex
@@ -24,9 +24,19 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, message }) => {
         $align="center"
         $direction="column"
       >
-        <img src="/ic.png" alt="icon" />
+        {onSuccess ? (
+          <>
+            <img src="/success.png" alt="icon" />
 
-        <ModalText>{message}</ModalText>
+            <ModalText>Заявка отправлена!</ModalText>
+          </>
+        ) : (
+          <>
+            <img src="/error.png" alt="icon" />
+
+            <ModalText>Ошибка отправки</ModalText>
+          </>
+        )}
       </Flex>
     </Dialog>
   );
