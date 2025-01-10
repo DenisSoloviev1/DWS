@@ -21,3 +21,13 @@ export interface IRoute {
   component: LazyExoticComponent<ComponentType<any>>;
   roles: Roles[];
 }
+
+export interface IUser {
+  userName: string;
+  role: Roles;
+}
+
+export interface IOptionStruct {
+  id: number;
+  name: string;
+}

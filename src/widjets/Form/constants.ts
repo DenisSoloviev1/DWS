@@ -1,5 +1,5 @@
 export const textFieldStaticData = {
-  contactName: {
+  contact_name: {
     label: "ФИО контактного лица",
     type: "text",
     placeholder: "Иванов Иван Иванович",

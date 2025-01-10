@@ -5,7 +5,7 @@ zod.setErrorMap(errorMap);
 
 // Поля формы
 export enum FieldsKey {
-  contactName = "contactName",
+  contact_name = "contact_name",
   email = "email",
   phone = "phone",
   date = "date",
@@ -13,7 +13,7 @@ export enum FieldsKey {
 
 // Сообщения об ошибках для обязательных полей
 enum FieldRequiredWarnings {
-  contactName = "Введите ФИО",
+  contact_name = "Введите ФИО",
   email = "Введите email",
   phone = "Введите номер телефона",
   date = "Введите дату",
@@ -48,7 +48,7 @@ const validatePhone = (val: FieldsKey) =>
 export const createSchema = (fields: FieldsKey[]) => {
   const validatorFields = fields.map((filed) => {
     switch (filed) {
-      case "contactName":
+      case "contact_name":
         return { [filed]: validateText(filed) };
       case "phone":
         return { [filed]: validatePhone(filed) };

@@ -15,7 +15,7 @@ export const useRequestStore = create<IRequestStore>((set) => ({
     department: 0,
     division: 0,
     typeOfRequest: 0,
-    contactName: "",
+    contact_name: "",
     email: "",
     phone: "",
     date: "",
@@ -39,9 +39,9 @@ export const useRequestStore = create<IRequestStore>((set) => ({
     }));
   },
 
-  setContactName: (contactName: string) => {
+  setContactName: (contact_name: string) => {
     set((state) => ({
-      params: { ...state.params, contactName },
+      params: { ...state.params, contact_name },
     }));
   },
   setEmail: (email: string) => {

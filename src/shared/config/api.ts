@@ -25,7 +25,8 @@ export const apiRequest = async <T>(
   params?: object
 ): Promise<IResponse<T>> => {
   try {
-    const token = localStorage.getItem("authToken");
+    // const token = localStorage.getItem("authToken");
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoic29sb3ZpZXZkZW5pczIwMDRAZ21haWwuY29tIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvc3VybmFtZSI6ItCh0L7Qu9C-0LLRjNC10LIg0JQu0KEuIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvaGFzaCI6IiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL3NpZCI6Ii0yOTAzMzIiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3VzZXJkYXRhIjoiMiIsIm5iZiI6MTczNjUxNDQyMiwiZXhwIjoxNzM2NTE4MDIyLCJpc3MiOiJWZWRLYWYiLCJhdWQiOiJNTUlTTGFiIn0.DipG6IOHOLS2GggEPcLjr1Ftn4GuEx8gXYiUZDe0pmY";
     if (!token) {
       throw new Error("Токен авторизации отсутствует");
     }

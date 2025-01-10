@@ -10,7 +10,7 @@ export type FormFieldProps = {
 
 export const FormField = ({ fieldValue, field, error }: FormFieldProps) => {
   switch (fieldValue) {
-    case "contactName":
+    case "contact_name":
     case "email":
     case "phone":
       const { label, type, placeholder } = textFieldStaticData[fieldValue];

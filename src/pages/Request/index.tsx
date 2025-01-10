@@ -8,13 +8,14 @@ import {
   createSchema,
   FormControl,
   FormField,
+  FormDateTimeField,
 } from "@/widjets/Form";
 import { Modal, Flex, SubmitButton } from "@/shared/ui";
 import { IRequest, addRequest, useRequestStore } from "@/entities/request";
 import { isMobile } from "@/shared/lib";
 import { Assent } from "../style";
 
-const fields = ["contactName", "email", "phone", "date"] as FieldsKey[];
+const fields = ["contact_name", "email", "phone", "date"] as FieldsKey[];
 const zodSchema = createSchema(fields);
 
 const Request: React.FC = () => {
@@ -54,7 +55,7 @@ const Request: React.FC = () => {
         setOnSuccess(true);
         setIsOpen(true);
         setTimeout(() => setIsOpen(false), 3000);
-        reset({ contactName: "", email: "", phone: "" });
+        reset({ contact_name: "", email: "", phone: "" });
       },
       onError: () => {
         setOnSuccess(false);
@@ -66,13 +67,13 @@ const Request: React.FC = () => {
     <>
       <Form submitFn={handleSubmit(onSubmit)}>
         <FormControl
-          field={"contactName" as FieldsKey}
-          error={errors.contactName?.message || ""}
+          field={"contact_name" as FieldsKey}
+          error={errors.contact_name?.message || ""}
           control={control}
           render={({ field }) => (
             <FormField
-              fieldValue={"contactName" as FieldsKey}
-              error={errors.contactName?.message || ""}
+              fieldValue={"contact_name" as FieldsKey}
+              error={errors.contact_name?.message || ""}
               field={field}
             />
           )}
@@ -110,6 +111,10 @@ const Request: React.FC = () => {
             )}
           />
         </Flex>
+
+        <FormDateTimeField>
+
+        </FormDateTimeField>
 
         <Assent>
           Нажимая кнопку "Отправить", Вы даёте свое &nbsp;
