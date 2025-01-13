@@ -9,9 +9,9 @@ import { IRequest } from "../model";
 export const addRequest = async (data: IRequest): Promise<boolean> => {
   const response = await apiRequest<boolean>("POST", "/api/requests/", { data });
 
-  if (!response.success) {
-    throw new Error(response.error || "Ошибка при создании заявки.");
+  if (!response) {
+    throw new Error("Ошибка при создании заявки.");
   }
 
-  return response.data;
+  return response.results;
 };

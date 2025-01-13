@@ -14,6 +14,7 @@ import { Modal, Flex, SubmitButton } from "@/shared/ui";
 import { IRequest, addRequest, useRequestStore } from "@/entities/request";
 import { isMobile } from "@/shared/lib";
 import { Assent } from "../style";
+import CalendarDate from "@/entities/calendar/ui";
 
 const fields = ["contact_name", "email", "phone", "date"] as FieldsKey[];
 const zodSchema = createSchema(fields);
@@ -31,6 +32,7 @@ const Request: React.FC = () => {
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [onSuccess, setOnSuccess] = useState<boolean>(false);
+  const [date, setDate] = useState<Date | null>(null); // Дата как объект Date
 
   const { params } = useRequestStore();
 
@@ -46,8 +48,8 @@ const Request: React.FC = () => {
       ...values,
       department: params.department,
       division: params.division,
-      typeOfRequest: params.typeOfRequest,
-      date: params.date,
+      type: params.type,
+      date: date ? date.toISOString() : null, // Преобразование даты в ISO-формат
     };
 
     mutate(mutationValues, {
@@ -56,6 +58,7 @@ const Request: React.FC = () => {
         setIsOpen(true);
         setTimeout(() => setIsOpen(false), 3000);
         reset({ contact_name: "", email: "", phone: "" });
+        setDate(null); // Сброс даты
       },
       onError: () => {
         setOnSuccess(false);
@@ -113,7 +116,11 @@ const Request: React.FC = () => {
         </Flex>
 
         <FormDateTimeField>
-
+          <CalendarDate
+            onChange={(newDate) => setDate(newDate)} // Обновляем объект Date
+            value={date} // Передаём объект Date
+            label={"Выберите дату"}
+          />
         </FormDateTimeField>
 
         <Assent>

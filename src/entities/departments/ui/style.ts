@@ -1,7 +1,8 @@
 import styled from "styled-components";
+import "@/shared/variables.css";
 
 export const NavItem = styled.button`
-display: flex;
+  display: flex;
   margin-top: 16px;
   width: 100%;
   max-width: 480px;

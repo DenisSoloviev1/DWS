@@ -5,7 +5,7 @@ interface IRequestStore {
   params: IRequest;
   setDepartment: (department: number) => void;
   setDivision: (division: number) => void;
-  setTypeOfRequest: (type: number) => void;
+  setType: (type: number) => void;
   setDate: (date_request: string) => void;
 }
 
@@ -14,7 +14,7 @@ export const useRequestStore = create<IRequestStore>((set) => ({
   params: {
     department: 0,
     division: 0,
-    typeOfRequest: 0,
+    type: 0,
     contact_name: "",
     email: "",
     phone: "",
@@ -33,7 +33,7 @@ export const useRequestStore = create<IRequestStore>((set) => ({
     }));
   },
 
-  setTypeOfRequest: (typeOfRequest: number) => {
+  setType: (typeOfRequest: number) => {
     set((state) => ({
       params: { ...state.params, typeOfRequest },
     }));
