@@ -6,14 +6,13 @@ import {
   Paper,
 } from "@mui/material";
 import styled from "styled-components";
-import { useDivisionsStore } from "@/entities/divisions";
+import { getDivisions, useDivisionsStore } from "@/entities/divisions";
 import { useAuthStore } from "@/entities/auth";
-import { IOptionStruct } from "@/shared/types";
+import { IOptionStruct, RolesDict } from "@/shared/types";
 import { useDepartmentsStore } from "@/entities/departments";
-import { getType } from "../api";
-import { useTypesStore } from "../model/store";
+import { useRequestStore } from "@/widjets/Form";
 
-interface TypesDropdownParams {
+interface DivisionsDropdownParams {
   label?: string;
 }
 
@@ -23,21 +22,22 @@ const SelectContainer = styled.div`
   background-color: #f1f4f9;
 `;
 
-export const TypeDropdown: React.FC<TypesDropdownParams> = ({
-  label = "Тип заявки",
+export const DivisionsDropdown: React.FC<DivisionsDropdownParams> = ({
+  label = "Ваше подразделение",
   ...props
 }) => {
-  const { filter, setFilter, clearFilter } = useTypesStore();
+  const { filter, setFilter, clearFilter } = useDivisionsStore();
+  const { setDivision } = useRequestStore();
   const { filter: department } = useDepartmentsStore();
-  const { filter: division } = useDivisionsStore();
   const [inputValue, setInputValue] = useState<IOptionStruct["name"]>(
     filter.name || ""
   );
-  const [types, setTypes] = useState<IOptionStruct[]>([]);
+  const [divisions, setDivisions] = useState<IOptionStruct[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
   const { role } = useAuthStore();
 
+  //получение подразделений
   useEffect(() => {
     if (!role) return;
 
@@ -45,23 +45,23 @@ export const TypeDropdown: React.FC<TypesDropdownParams> = ({
 
     const fetchDepartments = async () => {
       try {
-        const response = await getType(role, department.id, division.id);
-        setTypes(response);
+        const response = await getDivisions(role, department.id);
+        setDivisions(response);
       } catch (error) {
         console.error(error);
         setIsError(true);
-        setTypes([]);
+        setDivisions([]);
       } finally {
         setIsLoading(false);
       }
     };
 
     fetchDepartments();
-  }, [department, division]);
+  }, [department]);
 
   useEffect(() => {
-    console.log("Updated types of request:", types);
-  }, [types]); //потом убрать
+    console.log("Updated divisions:", divisions);
+  }, [divisions]); //потом убрать
 
   const handleChange = (
     _: SyntheticEvent,
@@ -70,9 +70,11 @@ export const TypeDropdown: React.FC<TypesDropdownParams> = ({
   ) => {
     if (reason === "clear") {
       clearFilter();
+      setDivision(0);
       setInputValue("");
     } else if (newValue) {
       setFilter({ id: newValue.id, name: newValue.name });
+      setDivision(newValue.id);
     }
   };
 
@@ -80,11 +82,11 @@ export const TypeDropdown: React.FC<TypesDropdownParams> = ({
     <SelectContainer>
       <Autocomplete
         multiple={false}
-        options={types}
+        options={divisions}
         getOptionLabel={(option) => option.name}
         value={
           filter.name !== "Соискатель"
-            ? types?.find((option) => option.name === filter.name) || null
+            ? divisions?.find((option) => option.name === filter.name) || null
             : null
         }
         inputValue={inputValue}
@@ -101,7 +103,9 @@ export const TypeDropdown: React.FC<TypesDropdownParams> = ({
         renderInput={(params) => (
           <TextField
             {...params}
-            label={label}
+            label={
+              label && role === RolesDict.STUDENT ? "Ваш факультет" : label
+            }
             variant="outlined"
             InputProps={{
               ...params.InputProps,

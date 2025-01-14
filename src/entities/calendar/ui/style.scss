@@ -1,12 +1,11 @@
-
 .react-datepicker {
   display: flex;
   position: relative;
-  bottom: 5px;
+  bottom: -5px;
   font-family: "Golos Text", sans-serif;
   background-color: #f1f4f9;
   color: #1f161e;
-  border-radius: 20px;
+  border-radius: 16px;
   font-size: 16px;
   overflow: hidden;
 }

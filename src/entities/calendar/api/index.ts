@@ -1,26 +1,20 @@
-import { IRequest } from "@/entities/request";
 import { apiRequest } from "@/shared/config";
-import { IOptionStruct } from "@/shared/types";
+import { IRequest } from "@/shared/types";
 
+interface ITimeParams {
+  department: IRequest["department"];
+  division: IRequest["division"];
+  type: IRequest["type"];
+  date: IRequest["date"];
+}
 /**
  * Получение доступного времени.
- * @param department - отдел, в который обращаются.
- * @param division - подразделение пользователя.
- * @param type - тип заявки.
- * @param date_request - дата обращения.
+ * @param data - объект значений(department, division, type, date)
  * @returns Promise с результатом операции.
  */
-export const getTime = async (
-  department: IRequest["department"],
-  division: IRequest["division"],
-  type: IRequest["type"],
-  date: IRequest["date"]
-): Promise<IOptionStruct[]> => {
-  const response = await apiRequest<IOptionStruct[]>("GET", `/api/list-time/`, {
-    department: department,
-    division: division,
-    type: type,
-    date_request: date,
+export const getTime = async (data: ITimeParams): Promise<string[]> => {
+  const response = await apiRequest<string[]>("POST", `/api/list-time/`, {
+    data,
   });
 
   if (!response) {

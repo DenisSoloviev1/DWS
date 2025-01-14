@@ -1,8 +1,8 @@
-import dayjs from 'dayjs';
+import dayjs from "dayjs";
 
 export const formatDate = (
-  date: string | Date,
-  timestamp: string = 'DD.MM.YYYY',
+  date: string | Date | null,
+  timestamp: string = "YYYY-MM-DD"
 ): string => {
-  return dayjs(date).format(timestamp);
+  return date === null ? "" : dayjs(date).format(timestamp);
 };

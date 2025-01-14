@@ -12,11 +12,13 @@ import {
 } from "@/widjets/Form";
 import { createSchema } from "./validator";
 import { Modal, Flex, SubmitButton } from "@/shared/ui";
-import { IRequest, addRequest, useRequestStore } from "@/entities/request";
+import { IRequest } from "@/shared/types";
+import { useRequestStore } from "./store";
+import { addRequest } from "@/shared/config";
 import { isMobile } from "@/shared/lib";
-import CalendarDate from "@/entities/calendar/ui";
+import { DateRange, TimeRange } from "@/entities/calendar";
 import { DivisionsDropdown } from "@/entities/divisions";
-import { TypeDropdown } from "@/entities/typeOfRequest";
+import { TypeDropdown } from "@/entities/type-of-request";
 
 const fields = ["contact_name", "email", "phone", "date"] as FieldsKey[];
 const zodSchema = createSchema(fields);
@@ -34,7 +36,7 @@ export const Form: React.FC = () => {
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [onSuccess, setOnSuccess] = useState<boolean>(false);
-  const [date, setDate] = useState<Date | null>(null); // Дата как объект Date
+  const [date, setDate] = useState<Date | null>(null);
 
   const { params } = useRequestStore();
 
@@ -51,7 +53,7 @@ export const Form: React.FC = () => {
       department: params.department,
       division: params.division,
       type: params.type,
-      date: date ? date.toISOString() : null, // Преобразование даты в ISO-формат
+      date: date ? date.toISOString() : null,
     };
 
     mutate(mutationValues, {
@@ -60,7 +62,7 @@ export const Form: React.FC = () => {
         setIsOpen(true);
         setTimeout(() => setIsOpen(false), 3000);
         reset({ contact_name: "", email: "", phone: "" });
-        setDate(null); // Сброс даты
+        setDate(null);
       },
       onError: () => {
         setOnSuccess(false);
@@ -71,8 +73,8 @@ export const Form: React.FC = () => {
   return (
     <>
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
-        <DivisionsDropdown/>
-        <TypeDropdown/>
+        <DivisionsDropdown />
+        <TypeDropdown />
 
         <FormControl
           field={"contact_name" as FieldsKey}
@@ -121,11 +123,13 @@ export const Form: React.FC = () => {
         </Flex>
 
         <FormDateTimeField>
-          <CalendarDate
-            onChange={(newDate) => setDate(newDate)} // Обновляем объект Date
-            value={date} // Передаём объект Date
+          <DateRange
+            onChange={(newDate) => setDate(newDate)}
+            value={date}
             label={"Выберите дату"}
           />
+
+          <TimeRange label={"Выберите время"} />
         </FormDateTimeField>
 
         <Assent>

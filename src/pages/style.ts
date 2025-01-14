@@ -75,7 +75,7 @@ export const Button = styled.button`
   justify-content: center;
   align-items: center;
   width: 100%;
-  max-width: 300px;
+  max-width: 200px;
   height: 60px;
   border-radius: 0.75rem;
   gap: 10px;
@@ -90,7 +90,11 @@ export const Button = styled.button`
   letter-spacing: -0.01125rem;
   transition: all ease 0.2s;
 
-  
+  svg {
+    height: 45px;
+    width: 45px;
+    fill: #fff;
+  }
 
   &:hover {
     background-color: #2169ba;

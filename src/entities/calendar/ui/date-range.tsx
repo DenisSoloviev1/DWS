@@ -2,57 +2,14 @@ import React, { useState, useEffect } from "react";
 import DatePicker, { registerLocale } from "react-datepicker";
 import { ru } from "date-fns/locale";
 import "react-datepicker/dist/react-datepicker.css";
-import styled from "styled-components";
-import "./style.scss"
+import "./style.scss";
 import { CalendarSvg } from "@/shared/ui";
-
-const InputContainer = styled.div`
-  width: 220px;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-
-  svg {
-    position: absolute;
-    right: 14px;
-    bottom: 16px;
-    width: 20px;
-    height: 20px;
-  }
-
-  input {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    background-color: #f1f4f9;
-    border: 1px solid #999b9e;
-    border-radius: 16px;
-    padding: 16px 14px;
-    position: relative;
-
-    &:hover {
-      border: 1px solid #1f2020;
-    }
-  }
-
-  &:focus-within {
-    input {
-      border: 1px solid #1e78d7;
-      box-shadow: 0px 0px 0px 1px rgba(30, 120, 215, 1);
-    }
-  }
-`;
-
-const InputLabel = styled.label`
-  max-width: 100%;
-  margin-bottom: 8px;
-  color: rgb(56, 66, 79);
-  white-space: nowrap;
-`;
+import { useCalendarStore } from "../model";
+import { InputContainer, InputLabel } from "./style.ts";
 
 registerLocale("ru", ru);
 
-interface CalendarDateProps {
+interface DateProps {
   onChange: (date: Date | null) => void; // Передаём объект Date или null
   value: Date | null;
   label: string;
@@ -60,7 +17,7 @@ interface CalendarDateProps {
   occupiedDates?: string[]; // Список занятых дат в формате "yyyy-MM-dd"
 }
 
-const CalendarDate: React.FC<CalendarDateProps> = ({
+export const DateRange: React.FC<DateProps> = ({
   onChange,
   value,
   label,
@@ -68,6 +25,7 @@ const CalendarDate: React.FC<CalendarDateProps> = ({
   occupiedDates = [],
 }) => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(value);
+  const { setDate } = useCalendarStore();
 
   useEffect(() => {
     if (value && !isNaN(value.getTime())) {
@@ -79,6 +37,7 @@ const CalendarDate: React.FC<CalendarDateProps> = ({
 
   const handleDateChange = (date: Date | null) => {
     setSelectedDate(date);
+    setDate(date);
     onChange(date); // Передаём объект Date напрямую
   };
 
@@ -104,7 +63,7 @@ const CalendarDate: React.FC<CalendarDateProps> = ({
         onChange={handleDateChange}
         dateFormat="d MMMM yyyy"
         minDate={new Date()}
-        filterDate={filterDate} // Применяем фильтр
+        filterDate={filterDate}
         locale="ru"
         placeholderText="_ _._ _._ _"
       />
@@ -113,5 +72,3 @@ const CalendarDate: React.FC<CalendarDateProps> = ({
     </InputContainer>
   );
 };
-
-export default CalendarDate;
