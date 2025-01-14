@@ -1,36 +1,26 @@
-import { ReactNode } from "react";
+import React from "react";
 import { Flex, MainSvg } from "@/shared/ui";
-
 import { Aside, Box } from "../style";
-import { Routes } from "@/shared/constants";
-
-import { NavBar } from "@/widjets/navbar";
+import { NavBar } from "@/widjets/Navbar";
 import { isMobile } from "@/shared/lib";
+import { Form, useFormStore } from "@/widjets/Form";
 
-const Main = ({ children }: { children: ReactNode }) => {
-  const isMain = window.location.pathname === Routes.MAIN;
-
+const Main: React.FC = () => {
+  const { showForm } = useFormStore();
   return (
     <Flex $direction={isMobile ? "column" : "row"}>
-      {isMain && (
-        <>
-          <Aside>
-            <NavBar />
-          </Aside>
+      <Aside>
+        <NavBar />
+      </Aside>
 
-          <Flex $justify={"center"} $align={"end"} $height={"100vh"}>
-            <MainSvg />
-          </Flex>
-        </>
-      )}
-      {!isMain && (
-        <>
-          <Aside>
-            <NavBar />
-          </Aside>
-
-          <Box>{children}</Box>
-        </>
+      {showForm ? (
+        <Box $show={showForm}>
+          <Form />
+        </Box>
+      ) : (
+        <Flex $justify={"center"} $align={"end"} $height={"100vh"}>
+          <MainSvg />
+        </Flex>
       )}
     </Flex>
   );

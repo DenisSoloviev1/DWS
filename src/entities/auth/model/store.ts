@@ -21,8 +21,8 @@ const initialUserName = (localStorage.getItem("userName") as Roles) || "";
 
 export const useAuthStore = create<IAuthState>((set) => ({
   isAuth: initialAuth,
-  // role: initialRole,
-  role: RolesDict.APPLICANT,
+  role: initialRole,
+  // role: RolesDict.APPLICANT,
   userName: initialUserName,
   setUser: (newUserName: string) => {
     localStorage.setItem("userName", newUserName);

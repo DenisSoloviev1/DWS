@@ -1,8 +1,8 @@
-import { memo } from 'react';
-import { Control, Controller, ControllerProps } from 'react-hook-form';
-import {FieldsKey, Error, FormItem } from "@/widjets/Form";
+import { memo } from "react";
+import { Control, Controller, ControllerProps } from "react-hook-form";
+import { FieldsKey, Error, FormItem } from "@/widjets/Form";
 
-interface FormControlParams extends Omit<ControllerProps, 'control' | 'name'> {
+interface FormControlParams extends Omit<ControllerProps, "control" | "name"> {
   field: FieldsKey;
   error: string;
   control: unknown;
@@ -17,5 +17,5 @@ export const FormControl = memo(
         {error && <Error>{error}</Error>}
       </FormItem>
     );
-  },
+  }
 );

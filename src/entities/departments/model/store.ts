@@ -18,7 +18,6 @@ const initStore: InitStore = {
 
 export const useDepartmentsStore = create<IStore>((set) => ({
   ...initStore,
-
   setFilter: (filter: IOptionStruct) => set(() => ({ filter: filter })),
   clearFilter: () => set(() => ({ filter: { id: 0, name: "" } })),
 }));

@@ -33,9 +33,5 @@ export const PrivateRoute: FC<IPrivateRoute> = ({
     return <NotFound />;
   }
 
-  return (
-    <Main>
-      <RouteComponent />
-    </Main>
-  );
+  return <Main />;
 };

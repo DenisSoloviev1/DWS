@@ -16,7 +16,7 @@ const initStore: InitStore = {
   },
 };
 
-export const useDivisionsStore = create<IStore>((set) => ({
+export const useTypesStore = create<IStore>((set) => ({
   ...initStore,
 
   setFilter: (filter: IOptionStruct) => set(() => ({ filter: filter })),

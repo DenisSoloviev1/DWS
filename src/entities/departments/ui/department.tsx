@@ -1,13 +1,12 @@
 import React from "react";
 import { useDepartmentsStore } from "@/entities/departments";
 import { IOptionStruct } from "@/shared/types";
-import { useNavigate } from "react-router-dom";
-import { Routes } from "@/shared/constants";
 import { NavItem } from "./style";
+import { useFormStore } from "@/widjets/Form";
 
-export const Department: React.FC<IOptionStruct> = ({ id, name }) => {
-  const { setFilter } = useDepartmentsStore();
-  const navigate = useNavigate();
+export const DepartmentItem: React.FC<IOptionStruct> = ({ id, name }) => {
+  const { setFilter, filter } = useDepartmentsStore();
+  const { showForm, setShowForm } = useFormStore();
 
   const handleClick = (
     id: IOptionStruct["id"],
@@ -15,8 +14,17 @@ export const Department: React.FC<IOptionStruct> = ({ id, name }) => {
   ) => {
     const values = { id, name };
     setFilter(values);
-    navigate(Routes.REQUEST);//сделать какую-то проверку, чтобы если пользователь уже на этой вкладке, навигация не работала
+
+    if (!showForm || filter?.id !== id) {
+      setShowForm(true);
+    }
   };
 
-  return <NavItem onClick={() => handleClick(id, name)}>{name}</NavItem>;
+  const isActive = showForm && filter?.id === id;
+
+  return (
+    <NavItem onClick={() => handleClick(id, name)} $isActive={isActive}>
+      {name}
+    </NavItem>
+  );
 };

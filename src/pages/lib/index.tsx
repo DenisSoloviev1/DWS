@@ -38,12 +38,4 @@ export const routes: IRoute[] = [
     isPublic: false,
     roles: [RolesDict.APPLICANT, RolesDict.EMPLOYEE, RolesDict.STUDENT],
   },
-  
-  {
-    id: 5,
-    path: Routes.REQUEST,
-    component: lazy(() => import("../Request")),
-    isPublic: false,
-    roles: [RolesDict.APPLICANT, RolesDict.EMPLOYEE, RolesDict.STUDENT],
-  },
 ];

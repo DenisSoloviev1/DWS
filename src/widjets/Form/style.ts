@@ -14,6 +14,23 @@ export const Error = styled.p`
 `;
 
 export const StyledForm = styled.form`
+display: 
   width: 100%;
   max-width: 580px;
+`;
+
+export const Assent = styled.p`
+  margin: 20px 0;
+
+  a {
+    font-weight: 500;
+    width: fit-content;
+    color: var(--color-action);
+
+    &:hover,
+    &:active {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
 `;

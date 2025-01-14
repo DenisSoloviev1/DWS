@@ -1,1 +1,1 @@
-export * from './division';
+export * from './typeOfRequest';

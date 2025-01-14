@@ -7,6 +7,13 @@ export const PlainText = styled.p`
   font-weight: 500;
 `;
 
+export const Message = styled.p`
+  color: var(--color-font);
+  font-size: 16px;
+  font-weight: 500;
+  margin: 20px;
+`;
+
 export const NavBarContainer = styled.div`
   width: 40vw;
   padding: 50px;

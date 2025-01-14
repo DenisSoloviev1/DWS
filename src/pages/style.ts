@@ -90,11 +90,7 @@ export const Button = styled.button`
   letter-spacing: -0.01125rem;
   transition: all ease 0.2s;
 
-  svg {
-    height: 45px;
-    width: 45px;
-    fill: #fff;
-  }
+  
 
   &:hover {
     background-color: #2169ba;
@@ -157,7 +153,9 @@ export const Aside = styled.aside`
   }
 `;
 
-export const Box = styled.div`
+export const Box = styled.div<{ $show: boolean }>`
+  display: ${(props) => (props.$show ? "flex" : "none")};
+  flex-direction: column;
   border-radius: 50px 0 0 50px;
   background: var(--color-background-container);
   padding: 40px;
@@ -169,25 +167,7 @@ export const Box = styled.div`
     width: 100%;
     padding: 20px 0 20px;
     border-radius: 50px 50px 0 0;
-    display: flex;
-    flex-direction: column;
     align-items: center;
     animation: slide-y 0.5s ease-in-out;
-  }
-`;
-
-export const Assent = styled.p`
-  margin: 20px 0;
-
-  a {
-    font-weight: 500;
-    width: fit-content;
-    color: var(--color-action);
-
-    &:hover,
-    &:active {
-      cursor: pointer;
-      text-decoration: underline;
-    }
   }
 `;
