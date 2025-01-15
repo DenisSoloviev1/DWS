@@ -46,16 +46,24 @@ export const Wrapper = styled.div`
 `;
 
 export const Image = styled.div`
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
   img {
     width: 50vw;
     object-fit: contain;
   }
 
   svg {
-    max-width: 500px;
+    width: 100%;
+    height: 90%;
   }
 
   @media screen and (max-width: 900px) {
+    height: auto;
+
     img {
       margin-top: 50px;
       width: auto;
@@ -169,8 +177,8 @@ export const Box = styled.div<{ $show: boolean }>`
 
   @media (max-width: 900px) {
     width: 100%;
-    padding: 20px 0 20px;
-    border-radius: 50px 50px 0 0;
+    padding: 20px;
+    border-radius: 30px 30px 0 0;
     align-items: center;
     animation: slide-y 0.5s ease-in-out;
   }

@@ -5,7 +5,7 @@ interface ITimeParams {
   department: IRequest["department"];
   division: IRequest["division"];
   type: IRequest["type"];
-  date: IRequest["date"];
+  date_request: IRequest["date"];
 }
 /**
  * Получение доступного времени.

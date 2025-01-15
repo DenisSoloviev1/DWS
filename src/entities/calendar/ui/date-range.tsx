@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import DatePicker, { registerLocale } from "react-datepicker";
 import { ru } from "date-fns/locale";
 import "react-datepicker/dist/react-datepicker.css";
-import "./style.scss";
+import "./calendar.css";
 import { CalendarSvg } from "@/shared/ui";
 import { useCalendarStore } from "../model";
 import { InputContainer, InputLabel } from "./style.ts";

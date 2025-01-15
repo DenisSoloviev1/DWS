@@ -19,7 +19,7 @@ export const InputContainer = styled.div`
     display: flex;
     align-items: center;
     background-color: #f1f4f9;
-    border: 1px solid #999b9e;
+    border: 1px solid #b9bcbf;
     border-radius: 16px;
     padding: 16px 14px;
     position: relative;
@@ -62,10 +62,6 @@ export const Time = styled.div`
   padding: 12px 24px;
   background: #f1f4f9;
   box-shadow: 1px 2px 8.1px 0px rgba(174, 174, 174, 0.25);
-
-  @media screen and (max-width: 900px) {
-    top: 60%;
-  }
 
   #1 {
     top: 15px;

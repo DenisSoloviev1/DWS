@@ -28,18 +28,25 @@ export const TimeRange = memo<TimeProps>(({ label }) => {
   const { date } = useCalendarStore();
   const { time, setTime } = useCalendarStore();
 
-  const [isFirstRender, setIsFirstRender] = useState(true); // Состояние для отслеживания первого рендера
   const listRef = useRef<HTMLUListElement>(null);
   const [availableTime, setAvailableTime] = useState<string[]>([]); // Хранение доступного времени
+  const [isFirstRender, setIsFirstRender] = useState(true);
 
   const { isShown, rootRef, setIsShown } = useHandleDateTimeRangeChange();
+
+  //дата и время для получение свободного времени
+  const currentTime = new Date();
+  const formattedTime = currentTime.toLocaleTimeString();
+  const formattedDate = formatDate(date);
+  const formattedDateTime = `${formattedDate}T${formattedTime}Z`
 
   const params = {
     department: department.id,
     division: division.id,
     type: type.id,
-    date: formatDate(date),
+    date_request: formattedDateTime,
   };
+
   const handleScroll = (offset: number) => {
     if (listRef.current) {
       listRef.current.scrollTop += offset;
@@ -51,20 +58,23 @@ export const TimeRange = memo<TimeProps>(({ label }) => {
     setIsShown(false);
   };
 
-  // Вызов API при монтировании компонента
   useEffect(() => {
+    if (isFirstRender) {
+      setIsFirstRender(false); // Помечаем, что это был первый рендер
+      return;
+    }
+
     const fetchAvailableTime = async () => {
       if (Object.keys(params).length > 0) {
-        // Проверка, что params не пустой
-        const timeData = await getTime(params); // Ожидание ответа от API
+        const timeData = await getTime(params); // Запрос к API
         if (timeData) {
-          setAvailableTime(timeData); // Установка данных времени в состояние
+          setAvailableTime(timeData); // Устанавливаем доступное время
         }
       }
     };
 
-    !isFirstRender ? fetchAvailableTime() : setIsFirstRender(false);
-  }, [params]);
+    fetchAvailableTime();
+  }, [params.date_request]);
 
   return (
     <InputContainer ref={rootRef}>

@@ -8,9 +8,10 @@ interface IFormStore {
 
 interface IRequestStore {
   params: IRequest;
+  comment?: string;
   setDepartment: (department: number) => void;
   setDivision: (division: number) => void;
-  setType: (type: number) => void;
+  setType: (type: number, comment?: string) => void;
   setDate: (date_request: string) => void;
 }
 
@@ -25,12 +26,13 @@ export const useRequestStore = create<IRequestStore>((set) => ({
     department: 0,
     division: 0,
     type: 0,
+    note: "",
     contact_name: "",
     email: "",
     phone: "",
     date: "",
   },
-
+ 
   setDepartment: (department: number) => {
     set((state) => ({
       params: { ...state.params, department },
@@ -43,27 +45,13 @@ export const useRequestStore = create<IRequestStore>((set) => ({
     }));
   },
 
-  setType: (typeOfRequest: number) => {
+  setType: (type: number, comment?: string) => {
     set((state) => ({
-      params: { ...state.params, typeOfRequest },
+      params: { ...state.params, type },
+      comment: comment
     }));
   },
 
-  setContactName: (contact_name: string) => {
-    set((state) => ({
-      params: { ...state.params, contact_name },
-    }));
-  },
-  setEmail: (email: string) => {
-    set((state) => ({
-      params: { ...state.params, email },
-    }));
-  },
-  setPhone: (phone: string) => {
-    set((state) => ({
-      params: { ...state.params, phone },
-    }));
-  },
   setDate: (date: string) => {
     set((state) => ({
       params: { ...state.params, date },

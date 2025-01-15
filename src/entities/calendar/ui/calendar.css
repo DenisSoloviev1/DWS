@@ -71,3 +71,9 @@
 .react-datepicker__triangle {
   display: none;
 }
+
+@media screen and (max-width: 900px) {
+  .react-datepicker {
+    left: 20%;
+  }
+}

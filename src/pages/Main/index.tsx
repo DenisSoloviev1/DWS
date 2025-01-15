@@ -1,6 +1,6 @@
 import React from "react";
 import { Flex, MainSvg } from "@/shared/ui";
-import { Aside, Box } from "../style";
+import { Aside, Box, Image } from "../style";
 import { NavBar } from "@/widjets/Navbar";
 import { isMobile } from "@/shared/lib";
 import { Form, useFormStore } from "@/widjets/Form";
@@ -18,9 +18,9 @@ const Main: React.FC = () => {
           <Form />
         </Box>
       ) : (
-        <Flex $justify={"center"} $align={"end"} $height={"100vh"}>
+        <Image>
           <MainSvg />
-        </Flex>
+        </Image>
       )}
     </Flex>
   );

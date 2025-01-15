@@ -14,7 +14,6 @@ export const Error = styled.p`
 `;
 
 export const StyledForm = styled.form`
-display: 
   width: 100%;
   max-width: 580px;
 `;

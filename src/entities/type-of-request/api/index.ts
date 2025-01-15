@@ -13,6 +13,7 @@ export const getType = async (
   department: IOptionStruct["id"],
   division: IOptionStruct["id"]
 ): Promise<IOptionStruct[]> => {
+  console.log(`roles=${role} department=${department} division=${division}`)
   const response = await apiRequest<IOptionStruct[]>(
     "GET",
     `/api/types-of-requests/?roles=${role}&department=${department}&division=${division}`
