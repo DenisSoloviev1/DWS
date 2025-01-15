@@ -19,9 +19,5 @@ export const getType = async (
     `/api/types-of-requests/?roles=${role}&department=${department}&division=${division}`
   );
 
-  if (!response) {
-    throw new Error("Ошибка при получении типов заявок.");
-  }
-
   return response.results;
 };

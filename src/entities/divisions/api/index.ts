@@ -11,12 +11,8 @@ export const getDivisions = async (role: Roles, department: IOptionStruct["id"])
   console.log(`role=${role} department=${department}`)
   const response = await apiRequest<IOptionStruct[]>(
     "GET",
-    `/api/divisions/?role=${role}&department=${department}`
+    `/api/divisions/?roles=${role}&department=${department}`
   );
-
-  if (!response) {
-    throw new Error("Ошибка при получении подразделений.");
-  }
 
   return response.results;
 };

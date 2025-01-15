@@ -49,7 +49,7 @@ export const apiRequest = async <T>(
   } catch (error: any) {
     console.error(
       `Ошибка при запросе ${method} ${endpoint}:`,
-      error.response || error.message
+      error.response.data.error || error.message
     );
     throw error;
   }

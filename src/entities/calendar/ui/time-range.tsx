@@ -66,7 +66,7 @@ export const TimeRange = memo<TimeProps>(({ label }) => {
 
     const fetchAvailableTime = async () => {
       if (Object.keys(params).length > 0) {
-        const timeData = await getTime(params); // Запрос к API
+        const timeData = await getTime(params.department, params.division, params.type, params.date_request); // Запрос к API
         if (timeData) {
           setAvailableTime(timeData); // Устанавливаем доступное время
         }

@@ -12,9 +12,5 @@ export const getDepartments = async (role: Roles): Promise<IOptionStruct[]> => {
     `/api/departments/?roles=${role}`
   );
 
-  if (!response) {
-    throw new Error("Ошибка при получении отделов.");
-  }
-
   return response.results;
 };
