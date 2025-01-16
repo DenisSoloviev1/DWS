@@ -10,7 +10,7 @@ import { getDivisions, useDivisionsStore } from "@/entities/divisions";
 import { useAuthStore } from "@/entities/auth";
 import { IOptionStruct, RolesDict } from "@/shared/types";
 import { useDepartmentsStore } from "@/entities/departments";
-import { useRequestStore } from "@/widjets/Form";
+import { useRequestStore } from "@/entities/request";
 
 interface DivisionsDropdownParams {
   label?: string;

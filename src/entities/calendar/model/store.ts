@@ -1,13 +1,14 @@
 import { create } from "zustand";
 
 interface ICalendarStore {
-  date: Date | null;
+  date: string;
   time: string;
-  setDate: (date: Date | null) => void;
+  setDate: (date: string) => void;
   setTime: (time: string) => void;
 }
+
 export const useCalendarStore = create<ICalendarStore>((set) => ({
-  date: null,
+  date: "",
   time: "",
   setDate: (newDate) => set({ date: newDate }),
   setTime: (newTime) => set({ time: newTime }),

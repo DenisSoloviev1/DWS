@@ -39,7 +39,7 @@ const validateEmail = (val: FieldsKey) =>
 const validatePhone = (val: FieldsKey) =>
   zod
     .string(getRequiredError(val))
-    .regex(/^(\+7|8|9)\d{9,10}$/, {
+    .regex(/^(8)\d{9,10}$/, {
       message: "Неверный формат",
     })
     .min(10, { message: "Номер телефона слишком короткий" })

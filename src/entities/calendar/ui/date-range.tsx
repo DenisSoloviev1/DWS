@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import DatePicker, { registerLocale } from "react-datepicker";
 import { ru } from "date-fns/locale";
+import { format } from "date-fns";
 import "react-datepicker/dist/react-datepicker.css";
 import "./calendar.css";
 import { CalendarSvg } from "@/shared/ui";
@@ -10,7 +11,7 @@ import { InputContainer, InputLabel } from "./style.ts";
 registerLocale("ru", ru);
 
 interface DateProps {
-  onChange: (date: Date | null) => void; // Передаём объект Date или null
+  onChange: (formattedDate: Date | null) => void; // Передаём отформатированную дату или null
   value: Date | null;
   label: string;
   holidays?: string[]; // Список праздничных дат в формате "yyyy-MM-dd"
@@ -24,26 +25,22 @@ export const DateRange: React.FC<DateProps> = ({
   holidays = [],
   occupiedDates = [],
 }) => {
-  const [selectedDate, setSelectedDate] = useState<Date | null>(value);
-  const { setDate } = useCalendarStore();
-
-  useEffect(() => {
-    if (value && !isNaN(value.getTime())) {
-      setSelectedDate(value);
-    } else {
-      setSelectedDate(null);
-    }
-  }, [value]);
+  const { setDate } = useCalendarStore(); // Функция для сохранения даты
 
   const handleDateChange = (date: Date | null) => {
-    setSelectedDate(date);
-    setDate(date);
-    onChange(date); // Передаём объект Date напрямую
+    if (date) {
+      const formattedDate = format(date, "yyyy-MM-dd"); // Форматируем дату
+      onChange(date);
+      setDate(formattedDate); // Сохраняем форматированную дату
+    } else {
+      onChange(null);
+      setDate(""); // Сбрасываем значение
+    }
   };
 
   const filterDate = (date: Date) => {
     const day = date.getDay(); // 0 - воскресенье, 6 - суббота
-    const formattedDate = date.toISOString().split("T")[0]; // Формат "yyyy-MM-dd"
+    const formattedDate = format(date, "yyyy-MM-dd"); // Форматируем дату
 
     // Исключаем субботу, воскресенье, праздники и занятые даты
     return (
@@ -59,7 +56,7 @@ export const DateRange: React.FC<DateProps> = ({
       <InputLabel>{label}</InputLabel>
 
       <DatePicker
-        selected={selectedDate}
+        selected={value}
         onChange={handleDateChange}
         dateFormat="d MMMM yyyy"
         minDate={new Date()}

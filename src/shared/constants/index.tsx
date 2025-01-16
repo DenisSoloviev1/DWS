@@ -4,5 +4,4 @@ export enum Routes {
   AUTH = "/auth",
   MAIN = "/main",
   CALLBACK = "/callback",
-  REQUEST = "/request",
 }

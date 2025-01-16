@@ -6,9 +6,6 @@ import { baseUrl } from ".";
  */
 export interface IResponse<T> {
   error?: string; // Сообщение об ошибке, если запрос неуспешен.
-  count: number;
-  next: null;
-  previous: null;
   results: T;
 }
 
@@ -27,20 +24,20 @@ export const apiRequest = async <T>(
   params?: object
 ): Promise<IResponse<T>> => {
   try {
-    const token = localStorage.getItem("authToken");
-    if (!token) {
-      throw new Error("Токен авторизации отсутствует");
-    }
+    // const token = localStorage.getItem("authToken");
+    // if (!token) {
+    //   throw new Error("Токен авторизации отсутствует");
+    // }
 
     const config: AxiosRequestConfig = {
       method,
       url: `${baseUrl}${endpoint}`, // Полный URL
       data,
       params,
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
+      // headers: {
+      //   Authorization: `Bearer ${token}`,
+      //   "Content-Type": "application/json",
+      // },
     };
 
     const response = await axios(config);
@@ -49,7 +46,7 @@ export const apiRequest = async <T>(
   } catch (error: any) {
     console.error(
       `Ошибка при запросе ${method} ${endpoint}:`,
-      error.response.data.error || error.message
+      error.response?.data?.error || error.message
     );
     throw error;
   }

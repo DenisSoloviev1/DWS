@@ -30,16 +30,5 @@ export interface IUser {
 export interface IOptionStruct {
   id: number;
   name: string;
-  comment?: string;
-}
-
-export interface IRequest {
-  department: IOptionStruct["id"];
-  division?: IOptionStruct["id"];
-  type: IOptionStruct["id"];
   note?: string;
-  contact_name: IUser["userName"];
-  email: string;
-  phone: string;
-  date: string |null;
 }

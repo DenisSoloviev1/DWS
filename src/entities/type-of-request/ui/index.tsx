@@ -12,7 +12,7 @@ import { IOptionStruct } from "@/shared/types";
 import { useDepartmentsStore } from "@/entities/departments";
 import { getType } from "../api";
 import { useTypesStore } from "../model/store";
-import { useRequestStore } from "@/widjets/Form";
+import { useRequestStore } from "@/entities/request";
 
 interface TypesDropdownParams {
   label?: string;
@@ -29,13 +29,13 @@ export const TypeDropdown: React.FC<TypesDropdownParams> = ({
   ...props
 }) => {
   const { filter, setFilter, clearFilter } = useTypesStore();
-  const { setType } = useRequestStore();
+  const { setType } = useRequestStore();//выбранный тип заявки
   const { filter: department } = useDepartmentsStore();
   const { filter: division } = useDivisionsStore();
   const [inputValue, setInputValue] = useState<IOptionStruct["name"]>(
     filter.name || ""
   );
-  const [types, setTypes] = useState<IOptionStruct[]>([]);
+  const [types, setTypes] = useState<IOptionStruct[]>([]);//полученные типы заявок
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
   const { role } = useAuthStore();
@@ -73,11 +73,11 @@ export const TypeDropdown: React.FC<TypesDropdownParams> = ({
   ) => {
     if (reason === "clear") {
       clearFilter();
-      setType(0)
+      setType(0, "")
       setInputValue("");
     } else if (newValue) {
       setFilter({ id: newValue.id, name: newValue.name });
-      setType(newValue.id)
+      setType(newValue.id, newValue.note)
     }
   };
 

@@ -12,6 +12,6 @@ export const textFieldStaticData = {
   phone: {
     label: "Номер телефона",
     type: "tel",
-    placeholder: "+7 912 345 67 89",
+    placeholder: "8 912 345 67 89",
   },
 };
