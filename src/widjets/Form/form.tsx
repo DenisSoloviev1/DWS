@@ -19,11 +19,14 @@ import { DivisionsDropdown } from "@/entities/divisions";
 import { TypeDropdown } from "@/entities/type-of-request";
 import { Dialog } from "@mui/material";
 import { RolesDict } from "@/shared/types";
+import { useAuthStore } from "@/entities/auth";
 
 const fields = ["contact_name", "email", "phone", "date"] as FieldsKey[];
 const zodSchema = createSchema(fields);
 
 export const Form: React.FC = () => {
+  const { role } = useAuthStore();
+
   const {
     control,
     formState: { errors },
@@ -77,7 +80,7 @@ export const Form: React.FC = () => {
         setIsOpenModal(true);
         setTimeout(() => setIsOpenModal(false), 3000);
         setDate(null);
-        resetParams
+        resetParams;
       },
       onError: () => {
         setOnSuccess(false);
@@ -90,7 +93,7 @@ export const Form: React.FC = () => {
   return (
     <>
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
-        {!RolesDict.APPLICANT ? <DivisionsDropdown /> : <></>}
+        {role !== RolesDict.APPLICANT ? <DivisionsDropdown /> : <></>}
         <TypeDropdown />
 
         <Input
