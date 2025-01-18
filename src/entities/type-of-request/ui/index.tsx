@@ -62,10 +62,6 @@ export const TypeDropdown: React.FC<TypesDropdownParams> = ({
     fetchDepartments();
   }, [department, division]);
 
-  useEffect(() => {
-    console.log("Updated types of request:", types);
-  }, [types]); //потом убрать
-
   const handleChange = (
     _: SyntheticEvent,
     newValue: IOptionStruct | null,

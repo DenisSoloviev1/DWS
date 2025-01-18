@@ -5,7 +5,7 @@ import { useAuthStore } from "@/entities/auth";
 import { isMobile } from "@/shared/lib";
 import { Badge, Flex, GoBackBtn } from "@/shared/ui";
 import { DepartmentItem, getDepartments } from "@/entities/departments";
-import { IOptionStruct } from "@/shared/types";
+import { IOptionStruct, RolesDict } from "@/shared/types";
 
 export const NavBar = memo(() => {
   const role = useAuthStore((state) => state.role);
@@ -34,10 +34,6 @@ export const NavBar = memo(() => {
     fetchDepartments();
   }, [role]);
 
-  useEffect(() => {
-    console.log("Updated departments:", departments);
-  }, [departments]); //потом убрать
-
   if (!role) {
     return (
       <NavBarContainer>
@@ -53,7 +49,7 @@ export const NavBar = memo(() => {
         <Badge
           not_style={true}
           isAuth={true}
-          label={role}
+          label={role === RolesDict.APPLICANT ? "Гость" : role}//название заменено, потому что нужно переделывать бэк под эту роль
           icon={<IconUser size={isMobile ? 25 : 45} />}
           direction="ltr"
         />

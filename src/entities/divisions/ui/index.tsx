@@ -26,13 +26,10 @@ export const DivisionsDropdown: React.FC<DivisionsDropdownParams> = ({
   label = "Ваше подразделение",
   ...props
 }) => {
-  const { filter, setFilter, clearFilter } = useDivisionsStore();
-  const { setDivision } = useRequestStore();
+  const { filter: division, setFilter, clearFilter } = useDivisionsStore();
   const { filter: department } = useDepartmentsStore();
-  const [inputValue, setInputValue] = useState<IOptionStruct["name"]>(
-    filter.name || ""
-  );
-  const [divisions, setDivisions] = useState<IOptionStruct[]>([]);
+  const { setDivision } = useRequestStore();
+  const [divisions, setDivisions] = useState<IOptionStruct[]>([]);//состояние для сохранения полученных подразделений
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
   const { role } = useAuthStore();
@@ -59,10 +56,6 @@ export const DivisionsDropdown: React.FC<DivisionsDropdownParams> = ({
     fetchDepartments();
   }, [department]);
 
-  useEffect(() => {
-    console.log("Updated divisions:", divisions);
-  }, [divisions]); //потом убрать
-
   const handleChange = (
     _: SyntheticEvent,
     newValue: IOptionStruct | null,
@@ -71,7 +64,6 @@ export const DivisionsDropdown: React.FC<DivisionsDropdownParams> = ({
     if (reason === "clear") {
       clearFilter();
       setDivision(0);
-      setInputValue("");
     } else if (newValue) {
       setFilter({ id: newValue.id, name: newValue.name });
       setDivision(newValue.id);
@@ -85,12 +77,11 @@ export const DivisionsDropdown: React.FC<DivisionsDropdownParams> = ({
         options={divisions}
         getOptionLabel={(option) => option.name}
         value={
-          filter.name !== "Соискатель"
-            ? divisions?.find((option) => option.name === filter.name) || null
+          division.name !== "Соискатель"
+            ? divisions?.find((option) => option.name === division.name) || null
             : null
         }
-        inputValue={inputValue}
-        onInputChange={(_, newInputValue) => setInputValue(newInputValue)}
+        inputValue={division.name}
         onChange={handleChange}
         isOptionEqualToValue={(option, value) => option.id === value.id}
         noOptionsText={

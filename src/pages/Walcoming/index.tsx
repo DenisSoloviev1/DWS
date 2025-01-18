@@ -65,7 +65,7 @@ const Auth: React.FC = () => {
           />
           <Badge
             onClick={() => handleClick("Соискатель")}
-            label="соискатель"
+            label="гость"//название заменено, потому что нужно переделывать бэк под эту роль
             icon={<ArrowRight size={isMobile ? 33 : 66} />}
             direction="rtl"
           />

@@ -15,34 +15,42 @@ import { Modal, Flex, SubmitButton, Input } from "@/shared/ui";
 import { IRequest, addRequest, useRequestStore } from "@/entities/request";
 import { isMobile } from "@/shared/lib";
 import { DateRange, TimeRange } from "@/entities/calendar";
-import { DivisionsDropdown } from "@/entities/divisions";
-import { TypeDropdown } from "@/entities/type-of-request";
+import { DivisionsDropdown, useDivisionsStore } from "@/entities/divisions";
+import { TypeDropdown, useTypesStore } from "@/entities/type-of-request";
 import { Dialog } from "@mui/material";
 import { RolesDict } from "@/shared/types";
 import { useAuthStore } from "@/entities/auth";
+import { useDepartmentsStore } from "@/entities/departments";
 
 const fields = ["contact_name", "email", "phone", "date"] as FieldsKey[];
 const zodSchema = createSchema(fields);
 
 export const Form: React.FC = () => {
-  const { role } = useAuthStore();
+  const { role, userName } = useAuthStore();
 
   const {
     control,
     formState: { errors },
     handleSubmit,
+    reset,
   } = useForm<IRequest>({
     resolver: zodResolver(zodSchema),
     mode: "onSubmit",
+    defaultValues: {
+      contact_name: userName,
+    },
   });
 
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
   const [isOpenNote, setIsOpenNote] = useState<boolean>(false);
   const [onSuccess, setOnSuccess] = useState<boolean>(false);
   const [date, setDate] = useState<Date | null>(null);
-  const [comment, setComment] = useState<string>(); // Состояние для комментария пользователя
+  const [comment, setComment] = useState<string>(""); // Состояние для комментария пользователя
 
   const { params, note, resetParams } = useRequestStore();
+  const { clearFilter: resetType } = useTypesStore();
+  const { clearFilter: resetDivision } = useDivisionsStore();
+  const { clearFilter: resetDepartment } = useDepartmentsStore();
 
   useEffect(() => {
     if (note) {
@@ -80,7 +88,16 @@ export const Form: React.FC = () => {
         setIsOpenModal(true);
         setTimeout(() => setIsOpenModal(false), 3000);
         setDate(null);
+        setComment("");
         resetParams;
+        reset({
+          contact_name: "",
+          phone: "",
+          email: "",
+        });
+        resetType;
+        resetDivision;
+        resetDepartment;
       },
       onError: () => {
         setOnSuccess(false);
@@ -94,6 +111,7 @@ export const Form: React.FC = () => {
     <>
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         {role !== RolesDict.APPLICANT ? <DivisionsDropdown /> : <></>}
+
         <TypeDropdown />
 
         <Input
