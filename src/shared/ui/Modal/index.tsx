@@ -34,7 +34,7 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onSuccess }) => {
           <>
             <img src="/error.png" alt="icon" />
 
-            <ModalText>Произошла ошибка. Попробуйте позже.</ModalText>
+            <ModalText>Ошибка отправки</ModalText>
           </>
         )}
       </Flex>
